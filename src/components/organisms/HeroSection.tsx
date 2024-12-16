@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <video src="/images/bg1.mp4" className='absolute inset-0 h-full w-full object-cover object-center opacity-20' autoPlay loop muted />
         {/* <div className="absolute inset-0 bg-[url('/images/kenya-bg1.jpg')] bg-cover bg-center opacity-20" /> */}
-        <div className="absolute inset-0 bg-green-800/10" />
+        <div className="absolute inset-0 bg-blue-800/10" />
       </div>
 
       {/* Main Content */}
