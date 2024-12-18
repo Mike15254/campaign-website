@@ -3,32 +3,13 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, use } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
+import Media from '@/components/organisms/Media';
 
 const MediaPage = ({ params }: { params: Promise<{ id: string }> }) => {
 
   const resolvedParams = use(params); // Unwrap the async params
   const [id] = useState(resolvedParams.id);
-  const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit... At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat"
-  const related_items = [
-    {
-        "media_id": 1,
-        "image_url": "https://nairobileo.co.ke/storage/uploads/2021/06/IMG-20210611160416.jpg",
-        "image_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-        "media_id": 2,
-        "media_date": "12-12-2023",
-        "image_url": "https://cdn.standardmedia.co.ke/images/articles/thumbnails/Kb5m6rmUkTqAPZobXt0ASfLIFAVffP27kAnGlAnd.jpg",
-        "image_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-        "media_id": 3,
-        "media_site": "The Star",
-        "media_date": "12-12-2023",
-        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlRXMCIT9ur5RIOskH6_UO8ONvfOugaV4axQ&s",
-        "image_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-  ] 
+  const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit... At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat" 
   const more_related_items = [
     {
         "media_id": 1,
@@ -83,31 +64,7 @@ const MediaPage = ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
         </div> 
         <div className="text-[30px] text-3xl lg:text-4xl  font-bold text-center underline underline-offset-4">Related Media</div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {related_items.map(({ media_id, image_url, media_site, media_date, image_description }) => (
-                <div 
-                    key={media_id}
-                    className="p-6 rounded-xl bg-white border border-gray-150 shadow-sm hover:shadow-md transition-shadow  overflow-hidden"
-                >
-                    <img 
-                        src={image_url} 
-                        alt={image_description} 
-                        className="w-full h-[50%] object-cover rounded-lg mb-4"
-                    />
-                    {media_site && media_date ? (
-                    <h5 className="text-sm"><span className='text-green-900'>{media_site}</span> | {media_date}</h5>
-                      ) : (
-                    <h5 className="text-sm">{media_date}</h5>
-                    )}
-                    <h3 className="text-xl font-semibold mb-3">
-                        {image_description}
-                    </h3>
-                    <Link href={`/media/${media_id}`} className="mt-auto text-sm font-medium text-green-700 hover:text-green-800 hidden md:block">
-                        Learn More →
-                    </Link>
-                </div>
-            ))}
-        </div>
+         <Media/>
       </main>
     </div>
     </>
