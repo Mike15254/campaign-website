@@ -8,7 +8,7 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	extend: {
+  	extend: { 
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -55,7 +55,17 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+      screens: {
+        'xs': '480px', // Custom breakpoint for extra small devices
+        'sm': '640px', // Default small breakpoint
+        'md': '768px', // Default medium breakpoint
+        'lg': '1024px', // Default large breakpoint
+        'xl': '1280px', // Default extra large breakpoint
+        '2xl': '1536px', // Default 2x large breakpoint
+        '3xl': '1600px', // Custom breakpoint for even larger screens
+      },
+  
   	}
   },
   plugins: [require("tailwindcss-animate")],
