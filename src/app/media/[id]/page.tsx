@@ -58,7 +58,7 @@ const MediaPage = ({ params }: { params: Promise<{ id: string }> }) => {
               alt="image"
               className="rounded-lg shadow-md w-full md:h-[40%] lg:h-[50%]"
             />
-          <h3 className="font-bold text-[30px] mt-4 uppercase">Leadership is about vision, integrity, and the will to serve.</h3>
+          <h3 className="font-bold text-3xl lg:text-4xl mt-4 uppercase">Leadership is about vision, integrity, and the will to serve.</h3>
           <p className='text-justify mt-5'>{text}</p>
           </div>
 
@@ -82,7 +82,7 @@ const MediaPage = ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
           </div>
         </div> 
-        <div className="text-[30px] sm:text-[60px] lg:text-[40px]  font-bold text-center underline underline-offset-4">Related Media</div>
+        <div className="text-[30px] text-3xl lg:text-4xl  font-bold text-center underline underline-offset-4">Related Media</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {related_items.map(({ media_id, image_url, media_site, media_date, image_description }) => (
                 <div 

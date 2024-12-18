@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import  Link  from 'next/link';
+import Image from 'next/image';
 
 const MediaSection = () =>{
   const { t } = useTranslation();
@@ -34,7 +35,7 @@ const MediaSection = () =>{
             {media_items.map(({ media_id, image_url, media_site, media_date, image_description }) => (
                 <div 
                     key={media_id}
-                    className="p-6 rounded-xl bg-white border border-gray-150 shadow-sm hover:shadow-md transition-shadow  overflow-hidden"
+                    className="p-3 rounded-xl bg-white border border-gray-150 shadow-sm hover:shadow-md transition-shadow  overflow-hidden"
                 >
                     <img 
                         src={image_url} 
