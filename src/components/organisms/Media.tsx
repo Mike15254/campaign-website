@@ -1,55 +1,57 @@
 "use client";
-import React from 'react';
+import React , { useEffect, useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import  Link  from 'next/link';
 import Image from 'next/image';
 
 export default function Media(){
-  const { t } = useTranslation();
-  const media_items = [
-    {
-        "media_id":1,
-        "image_url": "https://imgs.search.brave.com/ZishhKwyNciZc-10n5xgGxqbJlPkBoqxTAuP3SgtpyY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/c3RhbmRhcmRtZWRp/YS5jby5rZS9pbWFn/ZXMvYXJ0aWNsZXMv/dGh1bWJuYWlscy95/Mnl3dE5IMUJscGly/Wlg4aGljaHl5UmZY/T3FGQkxYMFhWdklY/ZkRTLmpwZw",
-        "image_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    },
-    {
-        "media_id": 2,
-        "media_date": "12-12-2023",
-        "image_url": "https://imgs.search.brave.com/XHBlVMY90YY7pi6ChsVuTJ-cK_BpGE0uo6rJr9lhPUE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/c3RhbmRhcmRtZWRp/YS5jby5rZS9pbWFn/ZXMvYXJ0aWNsZXMv/dGh1bWJuYWlscy9L/WTlFV1NxTVRQY2xU/WFluUFYyb3JwNXFP/WWRhSHNYRnFuRk16/dzkxLmpwZw",
-        "image_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        
-    },
-    {
-        "media_id": 3,
-        "media_site": "The Star",
-        "media_date": "12-12-2023",
-        "image_url": "https://imgs.search.brave.com/iGZun_fiRqD0fHyiOgrW3cdTDYQ27FTu2wY2oDxDbs0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91emFs/ZW5kb25ld3MuY28u/a2Uvd3AtY29udGVu/dC91cGxvYWRzLzIw/MjIvMDgvQWN0aXZp/c3QtT2tpeWEtT210/YXRhaC0xMjAweDkw/MC0xLmpwZw",
-        "image_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-  ] 
+  const { t } = useTranslation(); 
+  const [mediaItems, setMediaItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchMediaItems = async () => {
+      try {
+        const response = await fetch('/api/media'); // Replace with your API endpoint
+        if (!response.ok) {
+          throw new Error('Failed to fetch media items');
+        }
+        const data = await response.json();
+        setMediaItems(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMediaItems();
+  }, []);
+
   return (
   <>
      {/* media grid  */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {media_items.map(({ media_id, image_url, media_site, media_date, image_description }) => (
+            {mediaItems.map(({ id, title, description, imageUrl }) => (
                 <div 
-                    key={media_id}
+                    key={id}
                     className="p-3 rounded-xl bg-white border border-gray-150 shadow-sm hover:shadow-md transition-shadow  overflow-hidden"
                 >
                     <img 
-                        src={image_url} 
-                        alt={image_description} 
+                        src = {imageUrl} 
+                        alt="image"
                         className="w-full h-[50%] object-cover rounded-lg mb-4"
                     />
-                    {media_site && media_date ? (
-                    <h5 className="text-sm"><span className='text-green-900'>{media_site}</span> | {media_date}</h5>
-                      ) : (
-                    <h5 className="text-sm">{media_date}</h5>
-                    )}
+                    {/* {media_site && media_date ? ( */}
+                    {/* <h5 className="text-sm"><span className='text-green-900'>{media_site}</span> | {media_date}</h5> */}
+                    {/*   ) : ( */}
+                    {/* <h5 className="text-sm">{media_date}</h5> */}
+                    {/* )} */}
                     <h3 className="text-xl font-semibold mb-3">
-                        {image_description}
+                        {title} <br/> {description}
                     </h3>
-                    <Link href={`/media/${media_id}`} className="mt-auto text-sm font-medium text-green-700 hover:text-green-800 hidden md:block">
+                    <Link href={`/media/${id}`} className="mt-auto text-sm font-medium text-green-700 hover:text-green-800 hidden md:block">
                         Learn More →
                     </Link>
                 </div>
