@@ -3,72 +3,108 @@
 import React from 'react';
 import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
+import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="relative min-h-screen">
-      {/* Background with Kenyan flag and green overlay */}
-      <div className="absolute inset-0 z-0">
-        <video src="/images/bg1.mp4" className='absolute inset-0 h-full w-full object-cover object-center opacity-20' autoPlay loop muted />
-        {/* <div className="absolute inset-0 bg-[url('/images/kenya-bg1.jpg')] bg-cover bg-center opacity-20" /> */}
-        <div className="absolute inset-0 bg-blue-800/10" />
+    <div className="relative">
+      {/* Mobile Background Image */}
+      <div className="lg:hidden absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#051C2C]/80 via-[#051C2C]/90 to-[#051C2C] z-10" />
+        <Image
+          src="/images/candidate.png"
+          alt=""
+          fill
+          className="object-cover object-top"
+          priority
+          sizes="100vw"
+        />
+      </div>
+
+      {/* Desktop Background */}
+      <div className="hidden lg:block absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[#051C2C] opacity-90" />
+        <video 
+          src="/images/bg1.mp4" 
+          className="absolute inset-0 h-full w-full object-cover object-center mix-blend-overlay"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        />
+        <div className="absolute inset-0" 
+          style={{
+            backgroundImage: 'url("/images/stars-pattern.png")',
+            backgroundSize: '400px',
+            opacity: 0.1
+          }} 
+        />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 h-ful max-w-7xl pt-24 lg:pt-36">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-          {/* Left Column - Image */}
-          <div className="w-full lg:w-1/2 max-w-lg mx-auto lg:mx-0">
-            <div className="relative aspect-[3/4]">
-              <Image
-                src="/images/candidate.png"
-                alt={t('hero.candidate_alt')}
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-
-          {/* Right Column - Text */}
-          <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-            {/* Heading Group */}
-            <div className="space-y-3">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-                {t('hero.name')}
+      <div className="relative z-20 container mx-auto px-4  flex items-center ">
+        <div className="max-w-7xl mx-auto w-full pt-20 lg:pt-36 lg:min-h-auto min-h-[100vh]">
+          {/* Hero Content */}
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 lg:pt-2 pt-36">
+            {/* Text Content */}
+            <div className="w-full lg:w-3/5 space-y-6 text-center lg:text-left">
+              <span className="inline-block text-blue-400 text-base md:text-lg font-medium px-4 py-1 rounded-full border border-blue-400/30">
+                {t('hero.time_for_change')}
+              </span>
+              
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-tight">
+                <span className="block">{t('hero.block.block1')}</span>
+                <span className="block">{t('hero.block.block2')}</span>
+                <span className="block text-blue-400">{t('hero.block.block3')}</span>
+                <span className="block">{t('hero.block.block4')}</span>
               </h1>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-wide">
-                {t('hero.title')}
-              </h2>
-              <h3 className="text-lg sm:text-xl font-semibold text-green-700">
-                {t('hero.subtitle')}
-              </h3>
+              
+              <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0">
+                {t('hero.description')}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6">
+                <a
+                  href="#vision"
+                  className="inline-flex items-center justify-center px-8 py-4 text-lg
+                    bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                    transition-colors duration-200 shadow-lg shadow-blue-600/20"
+                >
+                  {t('hero.cta.vision')}
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+                <a
+                  href="#about"
+                  className="inline-flex items-center justify-center px-8 py-4 text-lg
+                    border-2 border-white/20 text-white rounded-lg
+                    hover:bg-white/10 transition-colors duration-200"
+                >
+                  {t('hero.cta.learn_more')}
+                </a>
+              </div>
             </div>
 
-            {/* Tagline */}
-            <p className="text-xl sm:text-2xl italic text-gray-600">
-              {t('hero.tagline')}
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-              <button className="w-full sm:w-auto px-8 py-4 bg-green-700 text-white 
-                font-semibold rounded-full hover:bg-green-800 
-                transition-colors duration-200 shadow-lg">
-                {t('hero.cta.join')}
-              </button>
-              <button className="w-full sm:w-auto px-8 py-4 border-2 border-green-700 
-                text-green-700 font-semibold rounded-full hover:bg-green-50 
-                transition-colors duration-200">
-                {t('hero.cta.learn_more')}
-              </button>
+            {/* Desktop Image - Only visible on lg screens */}
+            <div className="hidden lg:block w-2/5">
+              <div className="relative aspect-[3/5] max-w-lg mx-auto">
+                <Image
+                  src="/images/candidate.png"
+                  alt={t('hero.candidate_alt')}
+                  fill
+                  className="object-cover object-top rounded-lg"
+                  priority
+                  sizes="(min-width: 1024px) 40vw"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Bottom Gradient Overlay for Mobile */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#051C2C] to-transparent z-10 lg:hidden" />
     </div>
   );
 };

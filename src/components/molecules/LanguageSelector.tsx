@@ -20,8 +20,8 @@ export function LanguageSelector() {
       <DropdownMenuTrigger asChild>
         <button 
           className={cn(
-            "w-full flex items-center gap-2 px-4 py-2.5",
-            "text-sm font-medium transition-all duration-200",
+            "w-full flex items-center gap-2 px-2 py-2",
+            "lg:text-sm text-xs font-medium transition-all duration-200",
             "text-gray-600 hover:text-green-700",
             "border rounded-lg",
             "hover:bg-gray-50 active:bg-gray-100",
@@ -30,7 +30,7 @@ export function LanguageSelector() {
           )}
         >
           <Globe className="w-4 h-4 shrink-0" />
-          <span className="flex-1 text-left">{currentLanguage.name}</span>
+          <span className="flex-1 text-left text-gray-600">{currentLanguage.name}</span>
           <ChevronDown 
             className={cn(
               "w-4 h-4 transition-transform duration-200",
@@ -56,7 +56,7 @@ export function LanguageSelector() {
             }}
             className={cn(
               "flex items-center gap-2 cursor-pointer py-2.5 px-3",
-              "text-sm font-medium rounded-md",
+              "text-sm font-medium rounded-lg",
               "hover:bg-gray-50 focus:bg-gray-50",
               "outline-none transition-colors duration-200",
               "data-[highlighted]:bg-gray-50",
@@ -68,7 +68,7 @@ export function LanguageSelector() {
               <span>{lang.name}</span>
             </div>
             {currentLanguage.code === lang.code && (
-              <Check className="w-4 h-4 text-green-600 shrink-0" />
+              <Check className="w-4 h-4  text-green-600 shrink-0" />
             )}
           </DropdownMenuItem>
         ))}

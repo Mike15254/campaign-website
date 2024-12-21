@@ -9,17 +9,32 @@ export default {
       mission: 'Dhamira Yetu',
       strategic_plan: 'Mpango Mkakati'
     },
-    hero: {
-        name: 'Okiya Omtatah',
-        title: 'MGOMBEA WA JAMHURI YA KENYA',
-        subtitle: 'KWA URAIS 2027',
-        tagline: 'Mtetezi wa Wananchi',
-        candidate_alt: 'Seneta Okiya Omtatah',
-        cta: {
-          join: 'Jiunge na Harakati',
-          learn_more: 'Jifunze Zaidi'
-        }
-      },
+   hero: {
+    time_for_change: "NI WAKATI WA MABADILIKO",
+    description: "Sisi ni kikundi cha watu waliojitolea ambao tuna shauku ya kufufua taifa letu na kuhakikisha maisha ya ustawi kwa Wakenya wote.",
+    candidate_alt: "Okiya Omtata",
+    block: {
+      block1: "Pamoja Tunaweza",
+      block2: "Kubadilisha",
+      block3: "Kenya",
+      block4: "Iwe Bora Tena"
+    },
+    cta: {
+      vision: "Tazama Maono Yetu",
+      learn_more: "Jifunze Zaidi"
+    },
+    actions: {
+      register: "Jiandikishe Kupiga Kura",
+      register_desc: "Toa sauti yako kwa kujisajili kupiga kura. Tumia haki yako ya kidemokrasia.",
+      events: "Hudhuria Matukio",
+      events_desc: "Shirikiana na chama chetu cha kisiasa na uwe sehemu ya mabadiliko chanya.",
+      involved: "Shiriki",
+      involved_desc: "Fanya athari halisi kwa kushiriki katika kampeni za chama chetu cha kisiasa.",
+      donate: "Changa Leo",
+      donate_desc: "Saidia juhudi za chama chetu cha kisiasa na tusaidie kuleta mabadiliko kupitia michango yako."
+    }
+  }
+  ,
       vision: {
         title: 'Maono Yetu kwa Kenya',
         subtitle: 'Kujenga mustakabali wenye ustawi, usawa, na uendelevu kwa Wakenya wote',

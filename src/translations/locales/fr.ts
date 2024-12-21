@@ -10,16 +10,31 @@ export default {
       strategic_plan: 'Plan Stratégique'
     },
     hero: {
-        name: 'Okiya Omtatah',
-        title: 'CANDIDAT DE LA RÉPUBLIQUE DU KENYA',
-        subtitle: 'POUR LA PRÉSIDENCE 2027',
-        tagline: 'Champion du Peuple',
-        candidate_alt: 'Sénateur Okiya Omtatah',
-        cta: {
-          join: 'Rejoignez le Mouvement',
-          learn_more: 'En Savoir Plus'
-        }
+      time_for_change: "C'EST LE MOMENT DU CHANGEMENT",
+      description: "Nous sommes un groupe dévoué d'individus passionnés par la revitalisation de notre nation et par la garantie d'un avenir prospère pour tous les Kényans.",
+      candidate_alt: "Okiya Omtata",
+      block: {
+        block1: "Ensemble Nous",
+        block2: "Pouvons Faire",
+        block3: "Le Kenya",
+        block4: "Grand À Nouveau"
       },
+      cta: {
+        vision: "Découvrez Notre Vision",
+        learn_more: "En Savoir Plus"
+      },
+      actions: {
+        register: "Inscrivez-vous pour Voter",
+        register_desc: "Faites entendre votre voix en vous inscrivant pour voter. Exercez votre droit démocratique.",
+        events: "Assistez aux Événements",
+        events_desc: "Engagez-vous avec notre parti politique et soyez partie prenante du mouvement positif.",
+        involved: "Impliquez-vous",
+        involved_desc: "Ayez un impact réel en participant aux campagnes de notre parti politique.",
+        donate: "Faites un Don Aujourd'hui",
+        donate_desc: "Soutenez les efforts de notre parti politique et aidez-nous à faire la différence grâce à vos dons."
+      }
+    }
+    ,
       vision: {
         title: 'Notre Vision pour le Kenya',
         subtitle: 'Construire un avenir prospère, équitable et durable pour tous les Kényans',

@@ -21,7 +21,7 @@ const VisionSection = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+          <h2 className="text-3xl lg:text-7xl font-light mb-4">
             {t('vision.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">

@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Campaign Website 2027 🇰🇪
 
-## Getting Started
+A modern, multilingual campaign website built with Next.js and NestJS.
 
-First, run the development server:
+## Quick Start 🚀
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Install dependencies
+bun install
+
+# Run development server
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Build for production
+bun run build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Start production server
+bun start
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tech Stack 💻
+Frontend
 
-## Learn More
+Next.js 14 (App Router)
+TypeScript
+Tailwind CSS
+shadcn/ui
+React Context (State Management)
 
-To learn more about Next.js, take a look at the following resources:
+Backend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+NestJS
+PostgreSQL
+Redis
+Prisma ORM
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+External Services
 
-## Deploy on Vercel
+Cloudinary (Media)
+Brevo (Email)
+M-Pesa & Stripe (Payments)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Project Structure 📁
+Copysrc/
+├── app/                    # Next.js app directory
+├── components/             # React components
+│   ├── atoms/             # Basic UI elements
+│   ├── molecules/         # Compound components
+│   ├── organisms/         # Complex components
+│   └── ui/                # shadcn components
+├── lib/                   # Utility functions
+├── styles/                # Global styles
+└── translations/          # Language files
+    └── locales/          # Translation JSON files
+Key Features ✨
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🌐 Multilingual Support (EN, SW, FR)
+📱 Mobile-First Design
+💳 Secure Payment Integration
+📊 Real-time Analytics
+📝 Content Management
+🎯 Event Management
+👥 Volunteer System
+
