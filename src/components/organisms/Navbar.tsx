@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { LanguageSelector } from '@/components/molecules/LanguageSelector';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -31,214 +31,160 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleSubmenu = (href: string) => {
+    setOpenSubmenu(openSubmenu === href ? null : href);
+  };
+
   const navItems = [
     { label: 'nav.home', href: '/' },
     { label: 'nav.about', href: '/about' },
-    { 
-      label: 'nav.vision',
-      href: '/vision',
-      children: [
-        { label: 'nav.mission', href: '/vision/mission' },
-        { label: 'nav.strategic_plan', href: '/vision/strategic-plan' },
-      ]
-    },
-    { label: 'nav.priorities', href: '/priorities' },
-    { label: 'nav.why_okiya', href: '/why-okiya' },
-    { label: 'nav.media', href: '/media' },
+    { label: 'nav.vision', href: '/vision' },
+    { label: 'nav.donate', href: '/donate' },
+    { label: 'nav.policies', href: '/policies' },
+    { label: 'nav.get_involved', href: '/get-involved' },
+    { label: 'nav.events', href: '/events' },
   ];
 
   const isActive = (href: string) => pathname === href;
 
+  const isTransparent = isHomePage && !isScrolled;
+
   const getNavbarStyle = () => {
     if (!isHomePage) {
-      return 'bg-gray-100 shadow-sm';
+      return 'bg-white shadow-sm';
     }
-    return isScrolled ? 'bg-gray-100 shadow-sm' : 'bg-transparent';
-  };
-
-  const getLinkStyle = (isActiveLink: boolean) => {
-    if (!isHomePage || isScrolled) {
-      return isActiveLink ? 'text-green-700' : 'text-gray-600 hover:text-green-700';
-    }
-    return isActiveLink ? 'text-green-400' : 'text-gray-100 hover:text-green-400';
-  };
-
-  const getDropdownStyle = () => {
-    if (!isHomePage || isScrolled) {
-      return 'bg-white';
-    }
-    return 'bg-gray-900';
-  };
-
-  const getDropdownItemStyle = () => {
-    if (!isHomePage || isScrolled) {
-      return 'text-gray-600 hover:bg-gray-50 hover:text-green-700';
-    }
-    return 'text-gray-200 hover:bg-gray-800 hover:text-green-400';
+    return isScrolled ? 'bg-white shadow-sm' : 'bg-transparent';
   };
 
   if (!mounted) return null;
 
-  const MobileNavItem = ({ item }: { item: any }) => (
-    <div key={item.href} className="border-b border-gray-100 last:border-0">
-      <div className="flex items-center justify-between">
-        <Link
-          href={item.href}
-          className={`flex-1 px-6 py-4 text-base transition-colors ${
-            isActive(item.href)
-              ? 'text-green-700 font-medium'
-              : 'text-gray-600'
-          }`}
-          onClick={() => !item.children && setIsMenuOpen(false)}
-        >
-          {t(item.label)}
-        </Link>
-        {item.children && (
-          <button
-            className="px-4 py-4 text-gray-500"
-            onClick={() => toggleSubmenu(item.href)}
-          >
-            <ChevronRight
-              className={`w-5 h-5 transition-transform duration-200 ${
-                openSubmenu === item.href ? 'rotate-90' : ''
-              }`}
-            />
-          </button>
-        )}
-      </div>
-      {item.children && (
-        <div
-          className={`overflow-hidden transition-all duration-200 ease-in-out bg-gray-50
-            ${openSubmenu === item.href ? 'max-h-48' : 'max-h-0'}`}
-        >
-          {item.children.map((child: any) => (
-            <Link
-              key={child.href}
-              href={child.href}
-              className={`block px-8 py-3 text-sm ${
-                isActive(child.href)
-                  ? 'text-green-700 bg-green-50/50'
-                  : 'text-gray-500 hover:text-green-700'
-              }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {t(child.label)}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-
   return (
     <>
       <nav 
-        className={`fixed w-full z-50 transition-all duration-300 lg:px-12 font-geist-sans ${getNavbarStyle()}`}
+        className={`fixed w-full z-50 transition-all duration-300 ${getNavbarStyle()}`}
       >
         {isLoading && (
           <div className="absolute top-0 left-0 w-full h-1 bg-green-700/20">
             <div className="h-full w-1/3 bg-green-700 animate-[loading_1s_ease-in-out_infinite]"></div>
           </div>
         )}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
-              <span className={`text-4xl transition-colors duration-300 ${
-                !isHomePage || isScrolled ? 'text-gray-800' : 'text-gray-100'
+              <span className={`text-3xl transition-colors duration-300 ${
+                isTransparent ? 'text-gray-100' : 'text-gray-800'
               }`}>
                 Okiya
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-x-8">
               {navItems.map((item) => (
-                <div key={item.href} className="relative group">
-                  <Link
-                    href={item.href}
-                    className={`px-3 py-2 text-lg font-medium transition-colors ${getLinkStyle(isActive(item.href))}`}
-                  >
-                    <span className="flex items-center gap-1">
-                      {t(item.label)}
-                      {item.children && <ChevronDown className="w-4 h-4" />}
-                    </span>
-                  </Link>
-
-                  {item.children && (
-                    <div className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg py-1 opacity-0 invisible 
-                      group-hover:opacity-100 group-hover:visible transition-all duration-200 ${getDropdownStyle()}`}>
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className={`block px-4 py-2 text-sm transition-colors ${getDropdownItemStyle()}`}
-                        >
-                          {t(child.label)}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-lg font-base transition-colors ${
+                    isTransparent
+                      ? isActive(item.href)
+                        ? 'text-white'
+                        : 'text-gray-100 hover:text-white'
+                      : isActive(item.href)
+                        ? 'text-green-600'
+                        : 'text-gray-600 hover:text-green-600'
+                  }`}
+                >
+                  {t(item.label)}
+                </Link>
               ))}
+              
+              {/* Join Us CTA */}
+              <Link
+                href="/join"
+                className={`px-4 py-1 text-sm font-medium rounded-lg transition-all border ${
+                  isTransparent
+                    ? 'border-white text-white hover:bg-gray-100'
+                    : 'border-green-600 text-gray-800 hover:bg-green-700'
+                }`}
+              >
+                {t('nav.join_us')}
+              </Link>
             </div>
 
             {/* Right Side Items */}
             <div className="flex items-center gap-4">
-              <LanguageSelector />
+              <LanguageSelector isTransparent={isTransparent} />
+              
               <button
                 className={`lg:hidden p-2 rounded-full transition-colors ${
-                  !isHomePage || isScrolled
-                    ? 'text-gray-600 hover:bg-gray-200'
-                    : 'text-gray-100 hover:bg-gray-800'
+                  isTransparent
+                    ? 'text-gray-100 hover:bg-white/10'
+                    : 'text-gray-600 hover:bg-gray-100'
                 }`}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Open menu"
               >
-                {isMenuOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
+                <Menu className="w-5 h-5" />
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Navigation */}
       <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden backdrop-blur-sm ${
-          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 bg-black/50 z-50 transition-opacity duration-300 lg:hidden
+          ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setIsMenuOpen(false)}
       />
 
-      {/* Mobile Navigation Sidebar */}
       <div
-        className={`fixed top-0 right-0 w-[280px] h-full bg-white z-50 transform transition-all duration-300 ease-in-out lg:hidden 
-          ${isMenuOpen ? 'translate-x-0 shadow-2xl' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 w-[280px] h-full bg-white z-50 transform 
+          transition-transform duration-300 ease-out lg:hidden
+          ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex flex-col h-full">
-          <div className="h-20 flex items-center justify-between px-6 border-b">
-            <span className="font-medium text-lg">Menu</span>
+          <div className="flex items-center justify-between p-4 border-b">
+            <span className="text-lg font-medium">Menu</span>
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Close menu"
+              className="p-2 text-gray-500 hover:text-gray-700"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto py-4">
             {navItems.map((item) => (
-              <MobileNavItem key={item.href} item={item} />
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`block px-4 py-3 text-sm font-medium ${
+                  isActive(item.href)
+                    ? 'text-green-600 bg-green-50'
+                    : 'text-gray-600 hover:text-green-600 hover:bg-gray-50'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t(item.label)}
+              </Link>
             ))}
+            
+            <div className="px-4 pt-4">
+              <Link
+                href="/join"
+                className="block w-full py-3 px-4 text-sm font-medium text-center text-white 
+                  bg-green-600 rounded-full hover:bg-green-700 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('nav.join_us')}
+              </Link>
+            </div>
           </div>
 
-          <div className="p-6 border-t">
-            <LanguageSelector />
+          <div className="p-4 border-t">
+            <LanguageSelector isTransparent={false} />
           </div>
         </div>
       </div>

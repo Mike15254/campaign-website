@@ -11,7 +11,11 @@ import {
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from "@/lib/utils";
 
-export function LanguageSelector() {
+interface LanguageSelectorProps {
+  isTransparent?: boolean;
+}
+
+export function LanguageSelector({ isTransparent = false }: LanguageSelectorProps) {
   const { currentLanguage, setLanguage, languages } = useLanguage();
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -22,15 +26,27 @@ export function LanguageSelector() {
           className={cn(
             "w-full flex items-center gap-2 px-2 py-2",
             "lg:text-sm text-xs font-medium transition-all duration-200",
-            "text-gray-600 hover:text-green-700",
+            isTransparent 
+              ? "text-gray-100 hover:text-white border-white/20" 
+              : "text-gray-600 hover:text-green-700 border-gray-200",
             "border rounded-lg",
-            "hover:bg-gray-50 active:bg-gray-100",
-            "focus:outline-none focus:ring-2 focus:ring-green-500/20",
-            isOpen && "bg-gray-50"
+            isTransparent
+              ? "hover:bg-white/10 active:bg-white/20"
+              : "hover:bg-gray-50 active:bg-gray-100",
+            "focus:outline-none focus:ring-2",
+            isTransparent
+              ? "focus:ring-white/20"
+              : "focus:ring-green-500/20",
+            isOpen && (isTransparent ? "bg-white/10" : "bg-gray-50")
           )}
         >
           <Globe className="w-4 h-4 shrink-0" />
-          <span className="flex-1 text-left text-gray-600">{currentLanguage.name}</span>
+          <span className={cn(
+            "flex-1 text-left",
+            isTransparent ? "text-gray-100" : "text-gray-600"
+          )}>
+            {currentLanguage.name}
+          </span>
           <ChevronDown 
             className={cn(
               "w-4 h-4 transition-transform duration-200",
@@ -42,7 +58,7 @@ export function LanguageSelector() {
       <DropdownMenuContent 
         align="end" 
         className={cn(
-          "w-[200px] p-1",
+          "w-[200px] p-1 bg-white",
           "animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
         )}
@@ -68,7 +84,7 @@ export function LanguageSelector() {
               <span>{lang.name}</span>
             </div>
             {currentLanguage.code === lang.code && (
-              <Check className="w-4 h-4  text-green-600 shrink-0" />
+              <Check className="w-4 h-4 text-green-600 shrink-0" />
             )}
           </DropdownMenuItem>
         ))}

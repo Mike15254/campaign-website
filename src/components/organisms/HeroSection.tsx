@@ -9,12 +9,12 @@ const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="relative">
+    <div className="relative ">
       {/* Mobile Background Image */}
       <div className="lg:hidden absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#051C2C]/80 via-[#051C2C]/90 to-[#051C2C] z-10" />
         <Image
-          src="/images/candidate.png"
+          src="/images/heroBg.png"
           alt=""
           fill
           className="object-cover object-top"
@@ -34,13 +34,7 @@ const HeroSection = () => {
           muted 
           playsInline
         />
-        <div className="absolute inset-0" 
-          style={{
-            backgroundImage: 'url("/images/stars-pattern.png")',
-            backgroundSize: '400px',
-            opacity: 0.1
-          }} 
-        />
+        
       </div>
 
       {/* Main Content */}
@@ -90,7 +84,7 @@ const HeroSection = () => {
             <div className="hidden lg:block w-2/5">
               <div className="relative aspect-[3/5] max-w-lg mx-auto">
                 <Image
-                  src="/images/candidate.png"
+                  src="/images/canditate1.png"
                   alt={t('hero.candidate_alt')}
                   fill
                   className="object-cover object-top rounded-lg"

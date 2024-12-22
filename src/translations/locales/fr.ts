@@ -3,11 +3,11 @@ export default {
       home: 'Accueil',
       about: 'À Propos',
       vision: 'Vision',
-      priorities: 'Priorités',
-      why_okiya: 'Pourquoi Okiya?',
-      media: 'Média',
-      mission: 'Notre Mission',
-      strategic_plan: 'Plan Stratégique'
+      donate: 'Faire un don',
+      policies: 'Politiques',
+      get_involved: 'Impliquez-vous',
+      events: 'Événements',
+      join_us: 'Rejoignez-nous',
     },
     hero: {
       time_for_change: "C'EST LE MOMENT DU CHANGEMENT",
